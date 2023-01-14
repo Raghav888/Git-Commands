@@ -34,3 +34,10 @@ git pull origin branchname -> it will get all changes that are made on your acti
 It is a combination of git fetch and git merge
 
 
+squashing the commits
+
+git rebase -i HEAD ~total number of commits
+then pick the commit you want and rest will be squash
+then keep only commit messgae you want
+git push origin branchname --force
+
