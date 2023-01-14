@@ -27,3 +27,10 @@ git merge branchname -> it will merge the branch to main branch
 
 git remote -v -> gives the repo link
 
+git fetch --all -> it will get all the other new branches, and chnages made on them from your last pull. It wont affect on your current active local branch as it dont run git  merge
+
+
+git pull origin branchname -> it will get all changes that are made on your active branch bby other people on repo. It will immedialty run git merge also.
+It is a combination of git fetch and git merge
+
+
