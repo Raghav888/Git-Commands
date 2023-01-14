@@ -1,3 +1,5 @@
+git clone url -> to download the repo
+
 git stash -> to save changes but not have them in code right now
 git stash pop  -> it will bring all those changes in your existing code
 git stash clear -> it will clear the saved stash code
@@ -8,6 +10,9 @@ git push origin branchname
 
 git checkout -b branchname branchname-from-which-checkout-needs-to-be-done
 
+
+git branch -> gives the current branch name
+
 git status
 
 git log  -> it helps to get id of commit
@@ -15,4 +20,10 @@ git log  -> it helps to get id of commit
 git revert id-of-commit -> it will undo all changes made by that specific commit
 
 git reset if-of-commit  -> it will remove all the changes made by commits done after that commit id.
+
+git switch branchname -> to switch between the branches
+
+git merge branchname -> it will merge the branch to main branch
+
+git remote -v -> gives the repo link
 
