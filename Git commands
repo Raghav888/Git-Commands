@@ -10,8 +10,14 @@ git push origin branchname
 
 git checkout -b branchname branchname-from-which-checkout-needs-to-be-done
 
+NOTE: GUIT uses SHA1 algo for hashing the files
 
-git branch -> gives the current branch name
+git branch -> gives the current branch name and also all avaliable branches
+
+Rename branch name
+First switch to the that following branch, of which you want to change the name
+
+git branch -m newNameOfBranch
 
 git status
 
