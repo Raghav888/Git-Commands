@@ -1,111 +1,113 @@
--To clone the repo on local
-git clone url -> to download the repo
+To clone the repo on local
+•	git clone <URL> 
+o	To download the repo
 
-- To create a branch
-git checkout -b branchname branchname-from-which-checkout-needs-to-be-done
+To create a branch
+•	git checkout -b <branch-name>
+o	Branch name from which checkout needs to be done
 
-- To push the changes
-git add .
-git commit -m "message"
-git push origin branchname
+To push the changes
+•	git add .
+•	git commit -m "message"
+•	git push origin <branch-name>
 
--Stash
-- Use when you dont want to commit the changes and want to switch to diff branch.
-- Note: we can stash changes from one branch, and can apply those stash code in same branch as well as in another branch 
-git stash save "stashName" -> to save changes but not have them in code right now
-git stash list -> it gives the list of stashed codesa, we get stashid from it
-git stash pop  -> it will bring all those changes in your code and delete it from stash list
-git stash apply stashid -> it will apply all those changes in your code but it wont delete it from stash list
-git stash drop stashid -> it will remove the stash code of that particular stashid
-git stash clear -> it will remove all stash code from the stash list
-
+Stash
+•	Use it when you do not want to commit to the changes and want to switch to a diff branch.
+Note:
+we can stash changes from one branch, and can apply those stash code in same branch as 	well as in another branch 
+•	git stash save <stash-name>
+o	 To save changes but not have them in code right now
+•	git stash list
+o	It gives the list of stashed code, we get stash-id from it
+•	git stash pop
+o	It will bring all those changes in your code and delete it from stash list
+•	git stash apply <stash-id>
+o	It will apply all those changes in your code, but it will not delete it from stash list
+•	git stash drop <stash-id>
+o	It will remove the stash code of that stash-id
+•	git stash clear
+o	It will remove all stash code from the stash list
 NOTE: GIT uses SHA1 algo for hashing the files
 
--Branch
-git branch -> gives the current branch name and also all avaliable branches
+Branch
+•	git branch -> gives the current branch name and all available branches
 
--Rename branch name
--First switch to the that following branch, of which you want to change the name
-git branch -m newNameOfBranch
+Rename Branch
+•	First switch to the that following branch, of which you want to change the name
+•	git branch -m <new-branch>
 
--To delete a branch
-git branch -d branchname
+To Delete Branch
+•	git branch -d <branch-name>
 
--git pull vs git fetch
--When your teammate has pushed some changes on remote feature branch/master branch, but how you will get those changes on your local?
-git pull and get fetch can be used here, But there is difference between both commands
+git pull vs git fetch
+•	When your teammate has pushed some changes on remote feature branch/master branch, how will you get those changes on your local?
+•	git pull and get fetch can be used here, but there is difference between both commands
+•	git fetch –all
+o	It will get all the other new branches/ changes on existing branch/same branch. 
+•	But it will not affect your current active local branch as it does not run git merge.
+•	With help of git status, we can know is our local branch behind the remote branch
+•	git fetch origin <branch-name>
+o	To fetch specific branch latest code, but it will not merge it with local code. So, after that we need to run git pull
+•	git pull origin <branch-name>
+o	It will get all changes that are made on your active branch by other people on repo. It will immediately run git merge also.
+•	It is a combination of git fetch and git merge
+Note: git pull mostly leads to merge conflict. 
 
-git fetch --all -> it will get all the other new branches/ changes on existing branch/same branch. 
--But It wont affect on your current active local branch as it dont run git merge.
--with help of git status, we can know is our local branch behind the remote branch
+Now if you have a remote branch, and that is not available on your local, to get that branch on local and get connected it with remote
+•	git switch <remote-branch-name>
+•	git status
+o	Gives status of current branch
+•	git log
+o	It helps to get Id of commit
 
-git fetch origin branchname -> to fetch specific branch latest code, but it wont merge it with local code. So after that we need to run git pull
+git revert vs git reset
+•	git revert <commit-id>
+o	It will undo all changes made by that specific commit
+•	git reset <commit-id>
+o	It will remove all the changes made by commits done after that commit id.
+•	git reset head –hard
+o	It will reset all commits and have changes that master has
+•	git switch <branch-name>
+o	To switch between the branches
+•	git merge <branch-name>
+o	It will merge the branch to main branch
 
-git pull origin branchname -> it will get all changes that are made on your active branch bby other people on repo. It will immedialty run git merge also.
--It is a combination of git fetch and git merge
--Note: git pull mostly leads to merge conflict. 
+git remote –v
+•	Gives the repo link
 
-- Now if you have a remote branch, and that is not avaiable on your local, To get that branch on local and get connected it with remote
-git switch remoteBranchName
+Squashing the Commits
+•	git rebase -i HEAD ~<number-of-commits>
+•	Then pick the commit you want, and rest will be squash
+•	Then keep only commit message you want
+•	git push origin <branch-name> --force
 
-git status -> gives status of current branch
-
-git log  -> it helps to get id of commit
-
-- git revert vs git reset
-
-git revert id-of-commit -> it will undo all changes made by that specific commit
-
-git reset id-of-commit  -> it will remove all the changes made by commits done after that commit id.
-
-git reset head --hard -> it will reset all commits and have changes that master has
-
-git switch branchname -> to switch between the branches
-
-git merge branchname -> it will merge the branch to main branch
-
-git remote -v -> gives the repo link
-
-- squashing the commits
-git rebase -i HEAD ~total number of commits
-then pick the commit you want and rest will be squash
-then keep only commit messgae you want
-git push origin branchname --force
-
-- Resolving merge conflicts/ Rebasing the branch with master
-Method 1:
-git pull --rebase origin master
-
-Method 2:
-git fetch --all
-git rebase origin/master
-
-- Below steps are common for both methods
-resolve merge conflicts and save the file
-git add .
-git rebase --continue
-If still merge conflicts are coming resolve them and continue git add . and git rebase --continue, till all merge conflicts are resolved
-Pro tip: Squash all commits, so that you can resolve merge conflicts in one go.
-git push origin branchname --force
-
-git rebase --abort -> if you want to abort the rebase.
+Resolving merge conflicts/ Rebase branch (2 ways)
+•	Method 1
+o	git pull --rebase origin master
+•	Method 2
+o	git fetch –all
+o	git rebase origin/master
+•	Below steps are same for both method
+o	Resolve merge conflicts and save the file
+o	git add .
+o	git rebase --continue
+•	If still merge conflicts are coming resolve them and continue git add . and git rebase --continue, till all merge conflicts are resolved
+o	git rebase –abort
+	To abort the rebasing
+o	git push origin <branch-name> --force
+  Pro tip: Squash all commits, so that you can resolve merge conflicts in one go.
 
 
-- CherryPick
--It is used when we want to apply particular commit changes from one branch to another branch.
--Mainly it is used for the bug fixes, where you want to apply that commit to fix the bug in multiple branches
--Basically it used to duplicate the commit from one branch to another
-
--In one of the branch A, one commit is made to fix a bug
--Now in another branch B, you want that commit.
--With help of git log, get the commit id from Branch A, copy it
--Now go to branch B, in which you want that commit changes from A branch.
-
-git cherry-pick commitid
-
--It will commit and apply changes on branch B , from that commit.
-
--If you would like to make some further modifications,
-- you can also instruct Git to only add the commit's changes to your Working Copy - without directly committing them:
-git cherry-pick commitId --no-commit
-
+Cherry Pick
+•	It is used when we want to apply commit changes from one branch to another branch.
+•	It is used for the bug fixes, where you want to apply that commit to fix the bug in multiple branches
+•	It used to duplicate the commit from one branch to another
+•	In one of the branch A, one commit is made to fix a bug
+•	Now in another branch B, you want that commit.
+•	With help of git log, get the commit id from Branch A, copy it
+•	Now go to branch B, in which you want that commit changes from A branch.
+•	git cherry-pick <commit-id>
+•	It will commit and apply changes on branch B, from that commit.
+•	If you would like to make some further modifications,
+•	you can also instruct Git to only add the commit's changes to your Working Copy - without directly committing them:
+•	git cherry-pick <commit-id> --no-commit
